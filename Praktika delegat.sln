@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktika delegat", "Praktika delegat\Praktika delegat.csproj", "{2B4D7B19-798A-4963-8B47-5F173B81CB15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountClass", "AccountClass\AccountClass.csproj", "{AE51A47D-6716-4459-893D-6B1239E9CE72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B4D7B19-798A-4963-8B47-5F173B81CB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B4D7B19-798A-4963-8B47-5F173B81CB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B4D7B19-798A-4963-8B47-5F173B81CB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B4D7B19-798A-4963-8B47-5F173B81CB15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE51A47D-6716-4459-893D-6B1239E9CE72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE51A47D-6716-4459-893D-6B1239E9CE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE51A47D-6716-4459-893D-6B1239E9CE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE51A47D-6716-4459-893D-6B1239E9CE72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D45243EB-D63E-42E8-A0A0-B02F2FBA3DB6}
+	EndGlobalSection
+EndGlobal
