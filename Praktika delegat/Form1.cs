@@ -11,13 +11,18 @@ using AccountClass;
 
 namespace Praktika_delegat
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
         }
         Account ac;
+        void PrintSimpleMessage(string message) => listBox1.Items.Add(message);
+        void NotifySimpleMessage(Account sender, AccountEventArgs e)
+        {
+
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -30,8 +35,6 @@ namespace Praktika_delegat
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ac = new Account(Convert.ToInt32(textBox2.Text), textBox1.Text);
-            listBox1.Items.Clear();
             listBox1.Items.Add($"Владелец счёта: {ac.fio}, состояние счета: {ac.sum}");
         }
 
@@ -43,7 +46,6 @@ namespace Praktika_delegat
         private void button2_Click(object sender, EventArgs e)
         {
             ac.Add(Convert.ToInt32(textBox3.Text));
-            listBox1.Items.Clear();
             listBox1.Items.Add($"Владелец счёта: {ac.fio}, состояние счета: {ac.sum}");
         }
 
@@ -52,13 +54,11 @@ namespace Praktika_delegat
             int x = Convert.ToInt32(textBox3.Text);
             if (ac.sum < x)
             {
-                listBox1.Items.Clear();
                 listBox1.Items.Add("На счету недосатточно средств");
             }
             else
             {
                 ac.Take(Convert.ToInt32(textBox3.Text));
-                listBox1.Items.Clear();
                 listBox1.Items.Add($"Владелец счёта: {ac.fio}, состояние счета: {ac.sum}");
             }
         }

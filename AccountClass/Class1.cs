@@ -6,36 +6,63 @@ using System.Threading.Tasks;
 
 namespace AccountClass
 {
-    public delegate void AccountHandler(string message);
+    public class AccountEventArgs
+    {
+        // Сообщение
+        public string Message { get; }
+        // Сумма, на которую изменился счет
+        public int Sum { get; }
+        public AccountEventArgs(string message, int sum)
+        {
+            Message = message;
+            Sum = sum;
+        }
+    }
     public class Account
     {
-        public int sum;
+        public delegate void AccountDelegate(Account sender, AccountEventArgs e);
+        public delegate void AccountEvent(Account sender, AccountEventArgs e);
+        public event AccountEvent Notify;
+        AccountDelegate taken;
+
         public string fio;
-        // Создаем переменную делегата
-        AccountHandler taken;
-        public Account(int sum, string fio)
-        {
-            this.sum = sum;
-            this.fio = fio;
-        }
-        // Регистрируем делегат
-        public void RegisterHandler(AccountHandler del)
+        public int sum;
+        
+        private string Fio { get => fio; set => fio = value; }
+        private int Sum { get => sum; set => sum = value; }
+        public void RegisterHandler(AccountDelegate del)
         {
             taken = del;
         }
-        public void Add(int sum) => this.sum += sum;
+
+        public Account(string fio, int sum)
+        {
+            Fio = fio;
+            Sum = sum;
+        }
+        public void Put(int sum)
+        {
+            taken?.Invoke($"Сумма {sum} снята со счета");
+            Sum += sum;
+            Notify?.Invoke(this, new AccountEventArgs($"На счет поступило {sum}", sum));
+        }
+        public void Add(int sum) => this.Sum += sum;
+
         public void Take(int sum)
         {
-            if (this.sum >= sum)
+            if (this.Sum >= sum)
             {
-                this.sum -= sum;
+                this.Sum -= sum;
                 // вызываем делегат, передавая ему сообщение
-                taken?.Invoke($"Со счета списано {sum} у.е.");
+                taken?.Invoke(($"Сумма {sum} снята со счета", sum));
+                Notify?.Invoke(this, new AccountEventArgs($"Сумма {sum} снята со счета", sum));
             }
             else
             {
-                taken?.Invoke($"Недостаточно средств. Баланс: {this.sum} у.е.");
+                taken?.Invoke(("Недостаточно денег на счете", sum));
+                Notify?.Invoke(this, new AccountEventArgs("Недостаточно денег на счете", sum));
             }
         }
+
     }
 }
